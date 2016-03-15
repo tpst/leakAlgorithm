@@ -130,7 +130,9 @@ Mat detectLeak(Mat &frame)
     cvtColor(frame, frame, CV_BGR2GRAY);
 
     Mat dst;
-
+    equalizeHist(frame, dst);
+    imshow("after", dst);
+    waitKey(0);
     //sharpen
     GaussianBlur(frame, dst, Size(var.size, var.size), (double)var.sigmaX/1000);
     cv::addWeighted(frame, (double)var.alpha/1000 , dst, (double)-var.beta/1000, (double)var.gamma/1000, dst);
